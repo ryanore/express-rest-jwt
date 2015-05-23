@@ -13,6 +13,7 @@ var app       = express();
  *  Initialize Application 
  *  Once MongoDB has connected, this is called.
  *  Set middleware, Listen for server, init websocket
+ *  If you don't need websocket  just comment this out it's init and it's require
  */
 var initApplication = function initApplication(){
   app.use(bodyParser.urlencoded({extended: true}));
@@ -27,7 +28,6 @@ var initApplication = function initApplication(){
 
   var server = app.listen(app.get('port'), function() {
     console.log('Express server listening on port ' + server.address().port);
-    // socket is a singleton basically,  just comment this out if
     socket.init(server);
   });
 
@@ -40,7 +40,7 @@ var initDB = function initDB(){
   var db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error:'));
   db.once('open', function(){
-    require('./seed/user');
+    require('./seed/user')();
     initApplication();
   });
 }();
