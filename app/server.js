@@ -1,5 +1,5 @@
 var express   = require('express'),
-    config    = require('../config'),
+    config    = require('./config'),
     path      = require('path'),
     bodyParser= require('body-parser'),
     socket    = require('./socket'),

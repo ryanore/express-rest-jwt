@@ -1,9 +1,11 @@
 var User = require('../models/userModel').model;
 
 module.exports = function(){
+  
   User.findOne(function(err,usr){
-    console.log(usr);
+    
     if( !usr ){
+    
       var admin = new User({
         'username':'firstAdmin',
         'firstName':'Admin',
@@ -12,7 +14,14 @@ module.exports = function(){
         'role':'admin',
         'password': 'iamanadmin'
       });
-      admin.save();
+      
+      admin.save(function(err){
+        if(!err){
+          console.log('User Created:: ');
+          console.log(usr);
+        }  
+      });
+      
     }
   });
 };
