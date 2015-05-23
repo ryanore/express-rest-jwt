@@ -1,4 +1,3 @@
-
 var BaseController = function(mod, n){
   this.model = mod;
   console.log('BASECONTROLLER ::: '+n);

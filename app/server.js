@@ -1,11 +1,13 @@
 var express   = require('express'),
     config    = require('../config'),
     path      = require('path'),
-    logger    = require('morgan'),
     bodyParser= require('body-parser'),
     socket    = require('./socket'),
-    mongoose  = require('mongoose');
+    mongoose  = require('mongoose'),
+    sanitize = require('express-sanitized');
+
 var app       = express();
+
 
 /**
  *  Initialize Application 
@@ -13,11 +15,10 @@ var app       = express();
  *  Set middleware, Listen for server, init websocket
  */
 var initApplication = function initApplication(){
-
-  app.use(logger('dev'));
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
-  
+  app.use(sanitize()); // this line follows express.bodyParser() 
+
   app.all('/*', [require('./middleware/cors')]);
 
   var routes    = require('./routes')(app);
