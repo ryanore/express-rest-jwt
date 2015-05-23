@@ -1,0 +1,27 @@
+{
+  "name": "express-rest-jwt",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "async": "~0.9.0",
+    "bcrypt": "^0.8.0",
+    "body-parser": "~1.8.x",
+    "express": "~4.12.x",
+    "express-jwt": "^0.5.1",
+    "express-validator": "^2.10.0",
+    "forever": "^0.14.1",
+    "jsonwebtoken": "^1.3.0",
+    "mongoose": "~3.8.x",
+    "mongoose-unique-validator": "^0.4.1",
+    "morgan": "^1.3.1",
+    "request": "~2.36.0",
+    "socket.io": "^1.3.x"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-watch": "~0.5.2",
+    "grunt-express-server": "^0.4.19"
+  },  "engines": {
+    "node": "0.12.3"
+  }
+}

@@ -1,0 +1,36 @@
+# Created by http://gitignore.io
+
+### Node ###
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+logs
+results
+
+
+### Linux ###
+.*
+!.gitignore
+!.git*
+!.bowerrc
+!.editorconfig
+!.jshintrc
+!.npmignore
+!.travis.yml
+*~
+
+
+npm-debug.log
+node_modules
+*.sass-cache
+*bower_components
+dist
+test/temp
+_ignore
