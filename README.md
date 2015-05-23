@@ -22,10 +22,16 @@ Uses:
 
 **Run in Development:**  
 
-    $ npm dev
+    $ npm run dev
 
-**Configure**
-3 files for configuration depending on your environment.  Update the info in these to configure your server, port, database, cookie.
+**Configure:**
+
+3 files for configuration depending on your environment.  
+- /config/development.js
+- /config/testing.js
+- /config/production.js
+
+Update the info in these to configure your server, port, database, cookie.
 
 
 **Caveats**
