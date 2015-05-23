@@ -24,7 +24,8 @@
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-watch": "~0.5.2",
-    "grunt-express-server": "^0.4.19"
+    "grunt-express-server": "^0.4.19",
+    "grunt-contrib-jshint": "^0.11.2"
   },
   "engines": {
     "node": "0.12.3"

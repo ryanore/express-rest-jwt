@@ -1,8 +1,9 @@
 var User = require('../models/userModel').model;
 
 module.exports = function(){
-  User.findOne(function(usr){
-    if( !usr){
+  User.findOne(function(err,usr){
+    console.log(usr);
+    if( !usr ){
       var admin = new User({
         'username':'firstAdmin',
         'firstName':'Admin',
@@ -14,4 +15,4 @@ module.exports = function(){
       admin.save();
     }
   });
-}
+};

@@ -14,6 +14,14 @@ module.exports = function(grunt) {
         }
       }
     },
+    jshint: {
+      ignore_warning: {
+        options: {
+          '-W015': true,
+        },
+        src: ['app/**/*.js'],
+      },
+    },
     watch: {
       express: {
         files: ['app/**/*.js'],
@@ -26,12 +34,13 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch'); 
-
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-express-server'); 
 
   grunt.registerTask('server', function (target) {
     grunt.task.run([
         'express:dev',
+        'jshint',
         'watch'
     ]);
   });

@@ -2,12 +2,11 @@ module.exports = {
 
   io: null,
 
-
   initClient: function(client){
     var _this = this;
     
     client.on('join_room', function (data) {
-      console.log('joining socket room')
+      console.log('joining socket room');
     });
   },
   
