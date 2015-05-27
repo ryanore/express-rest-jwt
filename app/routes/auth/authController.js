@@ -4,25 +4,6 @@ var jwt = require('jsonwebtoken');
 
 
 
-/**
- *  Private: Generate JWT token
- *  Create Signed Token
- *  Store Token in Mongodb with self-destruct expire
- */
-var generateAndSendToken = function(usr, req, res){
-  var user = {
-    username: usr.username,
-    role: usr.role,
-    _id: usr._id
-  };
-
-  var token = jwt.sign(user, config.secret, { expiresInMinutes: config.expiry_minutes });
-
-  // do async db operation to verify token here
-  return res.status(200).send(token);
-};
-
-
 
 
 module.exports = {
@@ -90,6 +71,29 @@ module.exports = {
       console.log("No Valid authorization header...(Bearer) while verifying access_token");
       return res.status(401).send(err);
     }
+  },
+
+
+  /**
+   *  Private: Generate JWT token
+   *  Create Signed Token
+   *  Store Token in Mongodb with self-destruct expire
+   */
+  generateAndSendToken: function(usr, req, res){
+    var user = {
+      username: usr.username,
+      role: usr.role,
+      superAdmin: usr.superAdmin,
+      _id: usr._id
+    };
+
+    var token = jwt.sign(user, config.secret, { expiresInMinutes: config.expiry_minutes });
+
+    // do async db operation to verify token here
+    return  res.json({user: user, access_token: token});
+
   }
+
+
 
 };
