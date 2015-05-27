@@ -1,5 +1,5 @@
 var config = require ('../../config/auth');
-var User = require('../../models/userModel');
+var User = require('../../models/userModel').model;
 var jwt = require('jsonwebtoken');
 
 
@@ -19,7 +19,6 @@ var generateAndSendToken = function(usr, req, res){
   var token = jwt.sign(user, config.secret, { expiresInMinutes: config.expiry_minutes });
 
   // do async db operation to verify token here
-  
   return res.status(200).send(token);
 };
 
@@ -33,18 +32,25 @@ module.exports = {
    *  @param {String} req.body.password
    */
   login: function(req, res){
-    User.findOne({username: req.body.username}, function(err,usr){
-      if( err || !usr ){
-          return res.status(401).send(err);
-      }
 
+    User.findOne({username: req.body.username}, function(err,usr){
+      if( err ){
+        return res.status(401).send(err);
+      } 
+      
+      if( !usr ){
+        return res.status(404).json({error: "Invalid Credentials"});
+      }
+      
       usr.comparePassword(req.body.password, function(err, isMatch) {
-        if (err){ 
+        if (err){
           throw err;
         }
+        
         if(!isMatch){
           return res.status(401).send(err);
-        }
+        } 
+
         generateAndSendToken(usr, req, res);
       });
     });
@@ -68,6 +74,7 @@ module.exports = {
       if (/^Bearer$/i.test(scheme)) {
         token = credentials;
         jwt.verify(token, config.secret, function(err, decoded){
+          
           if(err){
             return res.status(401).send(err);
           } 
