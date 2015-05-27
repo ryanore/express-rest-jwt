@@ -20,6 +20,6 @@ UsersController.prototype.create = function(req, res) {
       if( err ) return res.status(400).json(err);
       auth.generateAndSendToken(instance, req, res);
     });
-},
+};
 
-module.exports = new UsersController(User, "UsersController");
+module.exports = new UsersController( User, 'UsersController');
