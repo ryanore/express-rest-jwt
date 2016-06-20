@@ -87,7 +87,7 @@ module.exports = {
       _id: usr._id
     };
 
-    var token = jwt.sign(user, config.secret, { expiresInMinutes: config.expiry_minutes });
+    var token = jwt.sign(user, config.secret, { expiresIn: config.expiry_minutes });
 
     // do async db operation to verify token here
     return  res.json({user: user, access_token: token});
